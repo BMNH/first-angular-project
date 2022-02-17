@@ -1,0 +1,115 @@
+<!--<div class="card bg-dark text-white">
+    <div class="card-header">{{title}}</div>
+    <div class="card-body">
+        <form>
+            <div class="form-group row">
+                <label for="name" class="col-form-label col-sm-2">Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="client.name" name="name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="surname" class="col-form-label col-sm-2">Surname</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="client.surname" name="surname">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-form-label col-sm-2">Email</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="client.email" name="email">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="create()"
+                        *ngIf="!client.id else elseBlock">Create</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)="updateCLient()">Edit</button>
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+-->
+
+<!--
+    <div class="card bg-dark text-white">
+    <div class="card-header">{{title}}</div>
+    <div class="card-body">
+        <form [formGroup]="clientForm">
+            <div class="form-group row">
+                <label for="name" class="col-form-label col-sm-2">Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="name" name="name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="surname" class="col-form-label col-sm-2">Surname</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="surname" name="surname">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-form-label col-sm-2">Email</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="email" name="email">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="create()"
+                        *ngIf="!clientForm.get('id').value else elseBlock">Create</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)="updateCLient()">Edit</button>
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+-->
+
+<mat-card>
+    <mat-card-title> {{title}}</mat-card-title>
+    <div>
+        <form [formGroup]="clientForm">
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" class="form-control" formControlName="name" name="name">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input matInput type="text" class="form-control" formControlName="surname" name="surname">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" class="form-control" formControlName="email" name="email">
+            </mat-form-field>
+
+            <br>
+            <br>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="create()"
+                        *ngIf="!clientForm.get('id').value else elseBlock">Create</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)="updateCLient()">Edit</button>
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-card>
+
