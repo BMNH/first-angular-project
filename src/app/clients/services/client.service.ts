@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Client } from '../models/client.model';
-import { CLIENTS } from './clients.json';
 import { filter, Observable, map, delay, tap, Subject } from 'rxjs';
 import { of } from 'rxjs';
 import { CommaExpr } from '@angular/compiler';

@@ -10,6 +10,7 @@ import { FirstComponent } from './first-component/first-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { TemplatesComponent } from './outbound/templates.component';
 
 
 
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     FirstComponent,
+    TemplatesComponent,
 
   ],
   imports: [

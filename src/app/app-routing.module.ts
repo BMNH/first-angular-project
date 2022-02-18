@@ -6,8 +6,14 @@ const routes: Routes = [
   {
     path: 'clients',
     loadChildren: () =>
-        import('./clients/client.module').then((m) => m.ClientModule)
-}
+      import('./clients/client.module').then((m) => m.ClientModule)
+  },
+  {
+    path: 'motifs',
+    loadChildren: () =>
+      import('./outbound/template.module').then((m) => m.TemplateModule)
+  }
+
 
 ];
 
