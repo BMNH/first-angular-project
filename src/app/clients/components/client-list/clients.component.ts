@@ -19,8 +19,9 @@ export class ClientsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'createAt', 'edit', 'delete'];
 
   constructor(public clientService: ClientService, public clientStore: ClientStoreService) { 
-    this.clientStore.clientRequest();
+    this.clientStore.clientsRequest();
     this._clients$ = this.clientStore.selectClients();
+    
   }
 
   ngOnInit(): void {

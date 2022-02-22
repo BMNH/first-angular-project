@@ -76,8 +76,9 @@
     </div>
 </div>
 -->
-
-<mat-card>
+<span *ngIf="loading$ | async">loading ... </span>
+<mat-spinner *ngIf="loading$ | async"></mat-spinner>
+<mat-card *ngIf="!(loading$ | async)">
     <mat-card-title> {{title}}</mat-card-title>
     <div>
         <form [formGroup]="clientForm">

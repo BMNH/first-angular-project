@@ -41,7 +41,7 @@
 <button mat-raised-button color="warn" routerLink="/clients/form">Create Client</button>
 
 <div>
-    <table mat-table [dataSource]="clients$" style="width: 100%;" class="mat-elevation-z8">
+    <table mat-table [dataSource]="_clients$ | async" style="width: 100%;" class="mat-elevation-z8">
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> Id </th>
             <td mat-cell *matCellDef="let client"> {{client.id}} </td>
@@ -69,12 +69,14 @@
 
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef> Edit </th>
-            <button mat-raised-button color="warn" *matCellDef="let client" [routerLink]="['/clients/form', client.id]">Edit</button>
+            <button mat-raised-button color="warn" *matCellDef="let client"
+                [routerLink]="['/clients/form', client.id]">Edit</button>
         </ng-container>
 
         <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef> Delete </th>
-            <button mat-raised-button color="warn" *matCellDef="let client" (click)="deleteClient(client)" [routerLink]="['/clients', client.id]">delete</button>
+            <button mat-raised-button color="warn" *matCellDef="let client" (click)="deleteClient(client)"
+                [routerLink]="['/clients', client.id]">delete</button>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
