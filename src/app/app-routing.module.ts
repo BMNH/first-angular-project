@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'motifs',
     loadChildren: () =>
       import('./outbound/template.module').then((m) => m.TemplateModule)
+  },
+  {
+    path: 'count',
+    loadChildren: () =>
+      import('./outbound/template.module').then((m) => m.TemplateModule)
   }
 
 

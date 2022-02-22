@@ -11,10 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { TemplatesComponent } from './outbound/templates.component';
-
-
-
-
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -32,7 +29,7 @@ import { TemplatesComponent } from './outbound/templates.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CoreModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
