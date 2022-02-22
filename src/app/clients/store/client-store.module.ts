@@ -5,6 +5,7 @@ import { ClientStoreService } from './client-store.service';
 import { ClientEffect } from './effect';
 import { FEATURE_NAME, reducers } from './state';
 
+
 @NgModule({
     imports: [
         StoreModule.forFeature(FEATURE_NAME, reducers),
