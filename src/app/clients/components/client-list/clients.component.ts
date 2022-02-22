@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import swal from 'sweetalert2';
 import { Client } from '../../models/client.model';
 import { ClientService } from '../../services/client.service';
+import { ClientStoreService } from '../../store/client-store.service';
 
 
 @Component({
@@ -14,10 +15,12 @@ import { ClientService } from '../../services/client.service';
 export class ClientsComponent implements OnInit {
 
   clients$: Observable<Client[]>;
+  _clients$: Observable<Client[]>;
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'createAt', 'edit', 'delete'];
 
-  constructor(public clientService: ClientService) { 
-
+  constructor(public clientService: ClientService, public clientStore: ClientStoreService) { 
+    this.clientStore.clientRequest();
+    this._clients$ = this.clientStore.selectClients();
   }
 
   ngOnInit(): void {

@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { SharedModule } from "../shared/shared.module";
 import { ClientRoutingModule } from "./client-routing.module";
 import { COMPONENTS } from "./components";
+import { ClientStoreModule } from "./store/client-store.module";
 
 @NgModule({
     schemas: [
@@ -14,7 +15,8 @@ import { COMPONENTS } from "./components";
     imports: [
         SharedModule,
         CommonModule,
-        ClientRoutingModule
+        ClientRoutingModule,
+        ClientStoreModule
       ],
     exports: [
     ],
