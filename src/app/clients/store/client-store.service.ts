@@ -38,4 +38,8 @@ export class ClientStoreService {
     createClient(client: Client) {
         this.store.dispatch(ClientDetailActions.createClientRequest({ client }));
     }
+
+    isEditeMode() {
+        return this.store.pipe(select(ClientDetailSelectors.isEditeMode));
+    }
 }

@@ -76,8 +76,18 @@
     </div>
 </div>
 -->
+
+<span *ngIf="isEditeMode$ | async">
+    edite mode
+</span>
+
+<span *ngIf="!(isEditeMode$ | async)">
+    create mode
+</span>
+
 <span *ngIf="loading$ | async">loading ... </span>
 <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+
 <mat-card *ngIf="!(loading$ | async)">
     <mat-card-title> {{title}}</mat-card-title>
     <div>

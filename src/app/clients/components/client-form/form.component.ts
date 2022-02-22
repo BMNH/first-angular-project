@@ -32,30 +32,36 @@ export class ClientFormComponent implements OnInit {
   client$: Observable<Client | null>;
   loading$: Observable<boolean>;
 
+  isEditeMode$: Observable<boolean>;
+
   constructor(private clientService: ClientService,
     private router: Router,
-    private clientStore: ClientStoreService,
-    private activatedRoute: ActivatedRoute) { }
+    private clientStore: ClientStoreService) { }
 
   ngOnInit(): void {
-    this.clientStore.clientRequest();
-    this.client$ = this.clientStore.selectClient();
-    this.loading$ = this.clientStore.selectClientLoading();
+    this.isEditeMode$ = this.clientStore.isEditeMode();
+    this.isEditeMode$.subscribe((isEditeMode) => {
+      if (isEditeMode) {
+        this.clientStore.clientRequest();
+        this.client$ = this.clientStore.selectClient();
+        this.loading$ = this.clientStore.selectClientLoading();
 
-    this.client$.subscribe(client => {
-      this.clientForm = new FormGroup({
-        id: new FormControl(client.id),
-        name: new FormControl(client.name, Validators.required),
-        surname: new FormControl(client.surname, Validators.required),
-        email: new FormControl(client.email, [Validators.email, Validators.min(13)])
-      });
+        this.client$.subscribe(client => {
+          this.clientForm = new FormGroup({
+            id: new FormControl(client.id),
+            name: new FormControl(client.name, Validators.required),
+            surname: new FormControl(client.surname, Validators.required),
+            email: new FormControl(client.email, [Validators.email, Validators.min(13)])
+          });
 
-      this.clientForm.get('name').valueChanges.subscribe(val => {
-        if (val === "toto") {
-          this.clientForm.get('email').setValue(null);
-        }
-      })
-    });
+          this.clientForm.get('name').valueChanges.subscribe(val => {
+            if (val === "toto") {
+              this.clientForm.get('email').setValue(null);
+            }
+          })
+        });
+      }
+    })
   }
 
   public create(): void {
