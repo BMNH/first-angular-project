@@ -7,18 +7,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-@Input() title: string = "";
+  @Input() title: string = "";
+
+  public navigations: Navigation[];
 
   constructor(public router: Router) {
-    
-   }
+
+  }
 
   ngOnInit(): void {
   }
 
-  navigate(){
+  navigate() {
     this.router.navigate(['/clients'])
     this.router.navigate(['/clients/form'])
   }
 
+}
+
+export interface Navigation {
+  displayName: string;
+  routePath: string;
 }
