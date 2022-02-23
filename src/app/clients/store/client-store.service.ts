@@ -39,6 +39,10 @@ export class ClientStoreService {
         this.store.dispatch(ClientDetailActions.createClientRequest({ client }));
     }
 
+    deleteClient(client: Client) {
+        this.store.dispatch(ClientListActions.deleteClientRequest({ client }));
+    }
+
     isEditeMode() {
         return this.store.pipe(select(ClientDetailSelectors.isEditeMode));
     }

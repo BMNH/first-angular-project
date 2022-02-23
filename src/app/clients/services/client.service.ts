@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Client } from '../models/client.model';
-import { Observable, delay } from 'rxjs';
+import { Observable, delay, filter } from 'rxjs';
 import { of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -16,14 +16,14 @@ export class ClientService {
   }
 
   getClients(): Observable<Client[]> {
-    /* return this.http.get<Client[]>(this.urlEndPoint).pipe(
+      return this.http.get<Client[]>(this.urlEndPoint).pipe(
       filter(clients => clients.length != 0),
       delay(2000),
-      ); */
+      ); 
 
-    return of(CLIENTS).pipe(
-      delay(2000)
-    )
+    //return of(CLIENTS).pipe(
+      //delay(2000)
+    //)
   }
 
   create(client: Client): Observable<Client> {
@@ -31,8 +31,8 @@ export class ClientService {
   }
 
   getClient(id: string | number): Observable<Client> {
-    return of(CLIENTS.find(c => c.id == id)).pipe(delay(1000))
-    // this.http.get<Client>(`${this.urlEndPoint}/${id}`)
+    //return of(CLIENTS.find(c => c.id == id)).pipe(delay(1000))
+    return this.http.get<Client>(`${this.urlEndPoint}/${id}`)
   }
 
   updateClient(client: Client): Observable<Client> {

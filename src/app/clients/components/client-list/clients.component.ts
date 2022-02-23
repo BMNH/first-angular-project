@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import swal from 'sweetalert2';
 import { Client } from '../../models/client.model';
@@ -16,12 +17,20 @@ export class ClientsComponent implements OnInit {
 
   clients$: Observable<Client[]>;
   _clients$: Observable<Client[]>;
+  client$: Observable<Client[]>;
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'createAt', 'edit', 'delete'];
 
-  constructor(public clientService: ClientService, public clientStore: ClientStoreService) { 
+  clientForm = new FormGroup({
+    id: new FormControl(null),
+    name: new FormControl(null, Validators.required),
+    surname: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.email, Validators.min(13)])
+  });
+
+  constructor(public clientService: ClientService, private router: Router, public clientStore: ClientStoreService) {
     this.clientStore.clientsRequest();
     this._clients$ = this.clientStore.selectClients();
-    
+
   }
 
   ngOnInit(): void {
@@ -29,10 +38,7 @@ export class ClientsComponent implements OnInit {
   }
 
   ngAfterContentInit() {
-    this.clients$ = this.clientService.getClients();
   }
-
-
 
   deleteClient(client: Client): void {
     swal({
@@ -46,21 +52,8 @@ export class ClientsComponent implements OnInit {
     } as any)
       .then((result) => {
         if (result.value) {
-          this.clientService.deleteClient(client.id)
-          .subscribe(
-            response => {
-              console.log(this.clients$)              
-              this.clients$ = this.clientService.getClients()
-              swal(
-                'Client deleted',
-                `The client ${client.name} was updated deleted`,
-                'success'
-              )
-            }
-          )
+          this.clientStore.deleteClient(client)
         }
-      }
-      )}
-
-
+      })
+  }
 }
